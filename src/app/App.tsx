@@ -5,15 +5,21 @@ import { classNames } from "shared/config/lib/classNames/classNames";
 import { useTheme } from "./provaiders/ThemeProvaider";
 import { AppRouter } from "./provaiders/router";
 import { NavBar } from "widgets/NavBar";
+import { SideBar } from "widgets/SideBar";
+import { Suspense } from "react";
 
 const App = () => {
   const { theme } = useTheme();
 
   return (
     <div className={classNames("app", {}, [theme])}>
-      <h1>App</h1>
-      <NavBar />
-      <AppRouter />
+      <Suspense fallback={""}>
+        <NavBar />
+        <div className={"content-page"}>
+          <SideBar />
+          <AppRouter />
+        </div>
+      </Suspense>
     </div>
   );
 };
