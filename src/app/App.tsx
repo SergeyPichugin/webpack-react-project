@@ -1,5 +1,3 @@
-import { Route, Routes } from "react-router-dom";
-
 import "./styles/index.scss";
 import { classNames } from "shared/config/lib/classNames/classNames";
 import { useTheme } from "./provaiders/ThemeProvaider";

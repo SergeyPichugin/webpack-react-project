@@ -17,6 +17,24 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
       },
     ],
   };
+
+  const bableLoader = {
+    test: /\.(js|jsx|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ["@babel/preset-env"],
+        plugins: [
+          [
+            "i18next-extract",
+            { locales: ["ru", "en"], keyAsDefaultValue: true },
+          ],
+        ],
+      },
+    },
+  };
+
   // Если не используем тайпскрипт то нужен babel loader
   const typescriptLoader = {
     test: /\.tsx?$/,
@@ -42,5 +60,5 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
-  return [typescriptLoader, cssLoader, svgLoader, fileLoader];
+  return [fileLoader, svgLoader, bableLoader, typescriptLoader, cssLoader];
 }
