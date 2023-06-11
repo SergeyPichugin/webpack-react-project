@@ -5,7 +5,9 @@ import {
     LOCAL_STORAGE_THEME_KEY,
 } from 'app/provaiders/ThemeProvaider/lib/ThemeContext';
 
-const defaultTheme = (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT;
+const defaultTheme = (
+    localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme)
+    || Theme.LIGHT;
 const ThemeProvaider: FC = ({ children }) => {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
 

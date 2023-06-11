@@ -1,23 +1,30 @@
 import { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router-dom';
 import { routeConfig } from 'shared/config/routeConfig/routeConfig';
 
-const AppRouter = () => (
-    <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-            {Object.values(routeConfig).map(({ element, path }) => (
-                <Route
-                    key={path}
-                    path={path}
-                    element={(
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <div className="page-wrapper">{element}</div>
-                        </Suspense>
-                    )}
-                />
-            ))}
-        </Routes>
-    </Suspense>
-);
+const AppRouter = () => {
+    const { t } = useTranslation('approuter');
+    return (
+        <Suspense fallback={
+            <div>{ t('Loading...')}</div>
+        }
+        >
+            <Routes>
+                {Object.values(routeConfig).map(({ element, path }) => (
+                    <Route
+                        key={path}
+                        path={path}
+                        element={(
+                            <Suspense fallback={<div>{ t('Loading...')}</div>}>
+                                <div className="page-wrapper">{element}</div>
+                            </Suspense>
+                        )}
+                    />
+                ))}
+            </Routes>
+        </Suspense>
+    );
+};
 
 export default AppRouter;
