@@ -16,7 +16,7 @@ const PageError = ({ className }: PageErrorProps) => {
         <div className={classNames(cls.PageError, {}, [])}>
             <p>{t('Произошла непредвиденная ошибка')}</p>
             <Button onClick={reloadPage}>
-                {t('Обновить страницу')}
+                {t('Обновить страницу пожалуйста произошла ошибка')}
             </Button>
         </div>
     );
